@@ -12,10 +12,10 @@ def parse_args():
 class ExtensionTester:
 	def __init__(self, extFlag):
 		self.extensions = extFlag or self.open_extensions_file()
-		self.extensions = ['.'+e for e in self.extensions]
+		self.extensions = ['.'+e if e != '' else e for e in self.extensions]
 
 	def test(self, filename):
-		extension = os.path.splitext(filename)[1];
+		extension = os.path.splitext(filename)[1]
 		return extension.lower() in self.extensions
 
 	def open_extensions_file(self):

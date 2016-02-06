@@ -8,6 +8,8 @@ Run `search.py` passing the keywords you want to search for.
 
 The script will only open files with extensions defined using the flag `-e` or `--extension`. If extension is ommited, it defaults to the extensions in `extensions.txt`.
 
+Note: `-e \0` evaluates to _no extension_.
+
 Examples
 --------
 ```python
