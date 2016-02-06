@@ -54,8 +54,10 @@ if __name__ == '__main__':
 	filenames = []
 	for dirpath, subdirs, files in os.walk(os.getcwd()):
 		for x in files:
-			if extTester.test(x) and (fileTeste.test(os.path.join(dirpath, x)) or test_filename(flags.keywords, x)):
-				filenames.append(os.path.join(dirpath, x))
-				print(os.path.join(dirpath, x))
-
+			try:
+				if extTester.test(x) and (fileTeste.test(os.path.join(dirpath, x)) or test_filename(flags.keywords, x)):
+					filenames.append(os.path.join(dirpath, x))
+					print(os.path.join(dirpath, x))
+			except UnicodeDecodeError:
+				pass
 	print('\n{} results.'.format(len(filenames)))
