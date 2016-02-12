@@ -10,6 +10,8 @@ The script will only open files with extensions defined using the flag `-e` or `
 
 Note: `-e \0` evaluates to _no extension_.
 
+You can also specify the root directory of the search (it will walk through all sub-directories recursively) using the `-d` flag. If ommited, it defaults to the current directory.
+
 Examples
 --------
 ```python

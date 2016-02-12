@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python3
 
 import os
 import argparse
@@ -7,6 +7,7 @@ def parse_args():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('keywords', nargs='+')
 	parser.add_argument('-e', '--extensions', nargs='+')
+	parser.add_argument('-d', '--directory', nargs='?')
 	return parser.parse_args()
 
 class ExtensionTester:
@@ -49,10 +50,11 @@ if __name__ == '__main__':
 	extTester = ExtensionTester(flags.extensions)
 	fileTeste = FileTester(flags.keywords)
 
-	print('Searching for {} in files with these extensions:'.format(flags.keywords), extTester.extensions, '\n')
+	print('Searching for {} in files with these extensions:'.format(flags.keywords), extTester.extensions)
+	print('Root directory: {}'.format(flags.directory or os.getcwd()), '\n')
 
 	filenames = []
-	for dirpath, subdirs, files in os.walk(os.getcwd()):
+	for dirpath, subdirs, files in os.walk(flags.directory or os.getcwd()):
 		for x in files:
 			try:
 				if extTester.test(x) and (fileTeste.test(os.path.join(dirpath, x)) or test_filename(flags.keywords, x)):
@@ -60,4 +62,5 @@ if __name__ == '__main__':
 					print(os.path.join(dirpath, x))
 			except UnicodeDecodeError:
 				pass
+
 	print('\n{} results.'.format(len(filenames)))
