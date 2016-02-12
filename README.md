@@ -17,4 +17,6 @@ Examples
 ```python
 ./search.py keyword1
 ./search.py keyword1 keyword2 -e ext1 ext2
+./search.py keyword1 keyword2 -d /path/to/root/
+./search.py keyword1 keyword2 -e ext1 ext2 -d /path/to/root/
 ```
